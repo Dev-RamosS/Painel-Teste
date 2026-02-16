@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Frontier Pizzaria</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Frontier</h2>
+                <p>Pizzaria</p>
+            </div>
+
+            <nav class="sidebar-menu">
+                <ul>
+                    <li class="menu-item active">
+                        <a href="#" data-section="dashboard">
+                            <span class="icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-section="pedidos">
+                            <span class="icon">📦</span>
+                            <span>Pedidos</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-section="financeiro">
+                            <span class="icon">💰</span>
+                            <span>Financeiro</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" data-section="usuarios">
+                            <span class="icon">👥</span>
+                            <span>Usuários</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Removido botão logout da sidebar - agora está no header -->
+        </aside>
+
+        <!-- MENU HAMBÚRGUER (MOBILE) -->
+        <button class="hamburger" id="hamburgerBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <span id="currentDate"></span>
+                    
+                    <!-- Dropdown de Perfil -->
+                    <div class="profile-dropdown-container">
+                        <button class="profile-btn" id="profileBtn">
+                            <span class="profile-icon">👤</span>
+                            <span class="profile-name" id="profileName">Usuário</span>
+                            <span class="profile-arrow">▼</span>
+                        </button>
+
+                        <div class="profile-dropdown" id="profileDropdown">
+                            <div class="profile-info">
+                                <div class="profile-user-name" id="dropdownUsername">admin</div>
+                                <div class="profile-user-role" id="dropdownRole">Tipo: Dono</div>
+                            </div>
+                            <div class="profile-divider"></div>
+                            <button class="profile-logout" id="logoutBtn">
+                                <span>🚪</span>
+                                <span>Sair</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CARDS COM KPIs -->
+            <section class="kpi-cards">
+                <div class="card card-primary">
+                    <div class="card-icon">💵</div>
+                    <div class="card-content">
+                        <h3>Faturamento Diário</h3>
+                        <p class="card-value" id="dailyRevenue">R$ 0,00</p>
+                    </div>
+                </div>
+
+                <div class="card card-primary">
+                    <div class="card-icon">📊</div>
+                    <div class="card-content">
+                        <h3>Faturamento Mensal</h3>
+                        <p class="card-value" id="monthlyRevenue">R$ 0,00</p>
+                    </div>
+                </div>
+
+                <div class="card card-success">
+                    <div class="card-icon">✅</div>
+                    <div class="card-content">
+                        <h3>Pedidos Totais</h3>
+                        <p class="card-value" id="totalOrders">0</p>
+                    </div>
+                </div>
+
+                <div class="card card-info">
+                    <div class="card-icon">📈</div>
+                    <div class="card-content">
+                        <h3>Pedidos do Dia</h3>
+                        <p class="card-value" id="todayOrders">0</p>
+                    </div>
+                </div>
+
+                <div class="card card-danger">
+                    <div class="card-icon">❌</div>
+                    <div class="card-content">
+                        <h3>Cancelamentos</h3>
+                        <p class="card-value" id="canceledOrders">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FILTROS -->
+            <section class="filters-section">
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="dateFilter">Data:</label>
+                        <input type="date" id="dateFilter">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="categoryFilter">Categoria:</label>
+                        <select id="categoryFilter">
+                            <option value="">Todas</option>
+                            <option value="Tradicional">Tradicional</option>
+                            <option value="Especial">Especial</option>
+                            <option value="Doce">Doce</option>
+                        </select>
+                    </div>
+
+                    <button class="btn-filter" id="resetFiltersBtn">Limpar Filtros</button>
+                </div>
+            </section>
+
+            <!-- TABELA DE PEDIDOS -->
+            <section class="orders-section">
+                <h2>Pedidos</h2>
+                <div class="table-responsive">
+                    <table class="orders-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Cliente</th>
+                                <th>Data</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Preenchido por JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
